@@ -5,24 +5,22 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label 'First Name' %>
+    <%= f.text_field :first_name %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label 'Last Name' %>
+    <%= f.text_field :last_name %>
   </div>
+
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Отправить запрос", class: 'btn btn-primary' %>
   </div>
 <% end %>
 
