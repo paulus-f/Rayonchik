@@ -1,0 +1,2 @@
+class ArchivedSuggestion < Suggestion
+end
