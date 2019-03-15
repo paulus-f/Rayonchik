@@ -1,0 +1,4 @@
+- if current_user.role.role_type == "admin"
+  = render "admin_page"
+- else
+  = render "user_page"
