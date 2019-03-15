@@ -1,0 +1,4 @@
+:schedule:
+  check_status:
+    class: SgCheckStatusWorker
+    every: '1d'
