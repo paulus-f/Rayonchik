@@ -7,9 +7,8 @@ class User < ApplicationRecord
   scope :administration, -> { where(role: 'administration') }
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
   has_one :role
-  has_many :suggestions
+  has_many :suggstions
 end
