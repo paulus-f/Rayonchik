@@ -2,8 +2,9 @@ class HomesController < ApplicationController
   # GET /homes
   # GET /homes.json
   def index
-    @suggestions = Suggestion.all
+    @cities = City.all
   end
+
 
 
   # GET /homes/new
