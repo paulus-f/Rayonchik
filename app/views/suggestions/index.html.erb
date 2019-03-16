@@ -13,8 +13,6 @@
     <% @suggestions.each do |suggestion| %>
       <tr>
         <td><%= link_to 'Show', suggestion %></td>
-        <td><%= link_to 'Edit', edit_suggestion_path(suggestion) %></td>
-        <td><%= link_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +20,4 @@
 
 <br>
 
-<%= link_to 'New Suggestion', new_suggestion_path %>
+<%= link_to 'New Suggestion', new_active_suggestion_path %>

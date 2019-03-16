@@ -8,7 +8,7 @@ class SuggestionsController < ApplicationController
   # GET /suggestions
   # GET /suggestions.json
   def index
-    @suggestions = ActiveSuggestion.first(10)
+    @suggestions = suggestion.first(10)
   end
 
   # GET /suggestions/1
@@ -17,12 +17,12 @@ class SuggestionsController < ApplicationController
 
   # GET /suggestions/new
   def new
-    @suggestion = ActiveSuggestion.new
+    @suggestion = suggestion.new
   end
 
   # GET /suggestions/1/edit
   def edit
-    unless current_user.id == @post.user.id
+    unless current_user.id == @suggestion.user.id
       unless current_user.role.role_type
         redirect_to :root, danger: 'Нельзя'
       end
@@ -32,7 +32,7 @@ class SuggestionsController < ApplicationController
   # POST /suggestions
   # POST /suggestions.json
   def create
-    @suggestion = ActiveSuggestion.new(suggestion_params)
+    @suggestion = suggestion.new(suggestion_params)
     if @suggestion.save
       redirect_to @suggestion, success: 'Успешно созданно'
     else
@@ -72,11 +72,21 @@ class SuggestionsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_suggestion
-    @suggestion = Suggestion.find(params[:id])
+    @suggestion = suggestion.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
+  def suggestion
+    Suggestion.where(type: params[:type])
+  end
+
   def suggestion_params
-    params.require(:suggestion).permit(:title, :image, :user_id, :region_id, :description)
+    suggestion_type = case params[:type]
+                      when 'ActiveSuggestion' then 'active_suggestion'
+                      when 'ArchivedSuggestion' then 'archived_suggestion'
+                      when 'PendingSuggestion' then 'panding_suggestion'
+                      when 'VotingSuggestion' then 'voting_suggestion'
+                      end
+    params.require(suggestion_type).permit(:title, :image, :user_id, :region_id, :description)
   end
 end

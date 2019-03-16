@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise'
 # gem 'mini_racer', platforms: :ruby
 gem "haml"
+
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
@@ -28,6 +29,8 @@ gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 
+gem 'ckeditor', '~> 4.3'
+gem "paperclip", "~> 6.0.0"
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -48,7 +51,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'jwt'
+gem 'pry'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

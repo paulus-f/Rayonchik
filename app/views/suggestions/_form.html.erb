@@ -1,17 +1,30 @@
-<%= form_with(model: suggestion, local: true) do |form| %>
-  <% if suggestion.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(suggestion.errors.count, "error") %> prohibited this suggestion from being saved:</h2>
-
-      <ul>
-      <% suggestion.errors.full_messages.each do |message| %>
+<% if @suggestion.errors.any? %>
+  <div class="alert alert-danger">
+    <h5><%= t('common.errors') %></h5>
+    <ul>
+      <% @suggestion.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+    </ul>
   </div>
 <% end %>
+<div class="d-flex justify-content-center">
+  <%= form_for @suggestion , html: { multipart: true } do |f| %>
+    <div class="form-group">
+      <div class="form-field">
+        <%= f.label :title, :class => "sign-label" %>
+        <%= f.text_field :title, :class => "form-control" %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :description, :class => "sign-label" %>
+        <%= f.cktext_area :description, :class => "form-control cleditor", ckeditor: { language: 'uk'} %>
+      </div>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    </div>
+    <div class="actions d-flex justify-content-center">
+      <%= f.submit "Submit", :class => "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

@@ -1,27 +1,24 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'form-signup text-center'})  do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
+  <img class="mb-4" src="https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/f3/95/5b/f3955b10-a006-ae26-5e8e-09daef2bfa21/AppIcon-0-1x_U007emarketing-0-0-GLES2_U002c0-512MB-sRGB-0-0-0-85-220-0-0-0-7.png/246x0w.jpg" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
+  <div class="form-group">
+    <%= f.label 'Email', :class => 'sr-only' %><br />
+    <%= f.email_field :email, :class => 'form-control', :placeholder => 'Email' %>
   </div>
 
-  <div class="field">
-    <%= f.label 'First Name' %>
-    <%= f.text_field :first_name %>
+  <div class="form-group">
+    <%= f.label 'First Name', :class => 'sr-only' %>
+    <%= f.text_field :first_name, :class => 'form-control',  :placeholder => 'First name' %>
   </div>
 
-  <div class="field">
-    <%= f.label 'Last Name' %>
-    <%= f.text_field :last_name %>
+  <div class="form-group">
+    <%= f.label 'Last Name', :class => 'sr-only'  %>
+    <%= f.text_field :last_name, :class => 'form-control', :placeholder => 'Last name' %>
   </div>
 
-
-  <div class="actions">
-    <%= f.submit "Отправить запрос", class: 'btn btn-primary' %>
-  </div>
+  <%= f.submit "Отправить запрос", class: 'btn btn-lg btn-primary btn-block' %>
+  <p class="mt-5 mb-3 text-muted"><%= render "devise/shared/links" %></p>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
