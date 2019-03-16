@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2019_03_15_181548) do
     t.string "post_index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "province_id"
+    t.index ["province_id"], name: "index_cities_on_province_id"
   end
 
   create_table "hearings", force: :cascade do |t|
@@ -66,16 +68,8 @@ ActiveRecord::Schema.define(version: 2019_03_15_181548) do
   end
 
   create_table "suggestions", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "image"
-    t.bigint "user_id"
-    t.bigint "region_id"
-    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["region_id"], name: "index_suggestions_on_region_id"
-    t.index ["user_id"], name: "index_suggestions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
