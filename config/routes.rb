@@ -3,7 +3,7 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
-  resources :suggestions, path: 'suggestions/all'
+  resources :suggestions, path: 'suggestions/all', only: %w[index show]
   root 'homes#index'
   resources :hearings
   resources :users

@@ -70,14 +70,12 @@ class SuggestionsController < ApplicationController
   end
 
   def suggestion_params
-
     suggestion_type = case params[:type]
                       when 'ActiveSuggestion' then 'active_suggestion'
                       when 'ArchivedSuggestion' then 'archived_suggestion'
                       when 'PendingSuggestion' then 'panding_suggestion'
                       when 'VotingSuggestion' then 'voting_suggestion'
                       end
-    binding.pry
     params.require(suggestion_type).permit(:title, :image, :user_id, :region_id, :description)
   end
 end
