@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_16_110001) do
+ActiveRecord::Schema.define(version: 2019_03_16_134012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,21 @@ ActiveRecord::Schema.define(version: 2019_03_16_110001) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rates", force: :cascade do |t|
+    t.bigint "[:user, :active_suggestion]_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["[:user, :active_suggestion]_id"], name: "index_rates_on_[:user, :active_suggestion]_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "rate_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rate_id"], name: "index_ratings_on_rate_id"
+  end
+
   create_table "regions", force: :cascade do |t|
     t.string "name"
     t.bigint "adminstration_id"
@@ -89,6 +104,8 @@ ActiveRecord::Schema.define(version: 2019_03_16_110001) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "rate_id"
+    t.index ["rate_id"], name: "index_suggestions_on_rate_id"
     t.index ["region_id"], name: "index_suggestions_on_region_id"
     t.index ["user_id"], name: "index_suggestions_on_user_id"
   end

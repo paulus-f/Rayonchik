@@ -10,7 +10,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   belongs_to :role
-  has_many :suggstions
+  has_many :suggestions
+  has_many :rate
   def admin?
     role.role_type == "admin" ? true : false
   end
