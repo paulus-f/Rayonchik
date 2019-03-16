@@ -1,0 +1,10 @@
+class CreateVotes < ActiveRecord::Migration[5.2]
+  def change
+    create_table :votes do |t|
+      t.references :suggestion
+      t.references :user
+      t.boolean :agree
+      t.timestamps
+    end
+  end
+end

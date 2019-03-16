@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :suggestions do
     post '/reject', to: 'suggestions#reject'
     post '/approve', to: 'suggestions#approve'
+    post '/vote', to: 'suggestions#vote'
   end
+  resources :votes
+  resources :suggestions, path: 'suggestions/all', only: %w[index show]
+  resources :administrations
   root 'homes#index'
   resources :hearings
   resources :users

@@ -1,0 +1,2 @@
+class UsersVote < ApplicationRecord
+end

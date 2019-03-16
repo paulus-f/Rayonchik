@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <nav class="nav">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <% if current_user.admin? %>
+          <%= link_to 'Администрация', current_user.administration, class: "nav-link" %>
+          <%= link_to 'Список пользователей', current_user, class: "nav-link" %>
+          <%= link_to 'Голосование', votes_path, class: "nav-link" %>
+        <% end %>
+      </div>
+    </nav>
     <div class="container">
       <%= yield %>
     </div>

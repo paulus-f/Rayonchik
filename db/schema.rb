@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_16_110001) do
+ActiveRecord::Schema.define(version: 2019_03_16_171258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_110001) do
     t.string "title"
     t.text "description"
     t.bigint "user_id"
+    t.boolean "approve"
     t.index ["user_id"], name: "index_suggestions_on_user_id"
   end
 
@@ -103,10 +104,44 @@ ActiveRecord::Schema.define(version: 2019_03_16_110001) do
     t.string "last_name"
     t.bigint "region_id"
     t.bigint "role_id"
+    t.bigint "administration_id"
+    t.index ["administration_id"], name: "index_users_on_administration_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["region_id"], name: "index_users_on_region_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  create_table "users_votes", force: :cascade do |t|
+    t.bigint "vote_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_users_votes_on_user_id"
+    t.index ["vote_id"], name: "index_users_votes_on_vote_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.bigint "suggestion_id"
+    t.bigint "user_id"
+    t.boolean "agree"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["suggestion_id"], name: "index_votes_on_suggestion_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
+  create_table "votings", force: :cascade do |t|
+    t.bigint "vote_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_votings_on_user_id"
+    t.index ["vote_id"], name: "index_votings_on_vote_id"
+  end
+
+  add_foreign_key "users_votes", "users"
+  add_foreign_key "users_votes", "votes"
+  add_foreign_key "votings", "users"
+  add_foreign_key "votings", "votes"
 end

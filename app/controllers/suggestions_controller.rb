@@ -8,7 +8,7 @@ class SuggestionsController < ApplicationController
   # GET /suggestions
   # GET /suggestions.json
   def index
-    @suggestions = suggestion.first(10)
+    @suggestions = Suggestion.first(10)
   end
 
   # GET /suggestions/1
@@ -17,7 +17,7 @@ class SuggestionsController < ApplicationController
 
   # GET /suggestions/new
   def new
-    @suggestion = suggestion.new
+    @suggestion = Suggestion.new
   end
 
   # GET /suggestions/1/edit
@@ -32,7 +32,7 @@ class SuggestionsController < ApplicationController
   # POST /suggestions
   # POST /suggestions.json
   def create
-    @suggestion = suggestion.new(suggestion_params)
+    @suggestion = Suggestion.new(suggestion_params)
     if @suggestion.save
       redirect_to @suggestion, success: 'Успешно созданно'
     else
@@ -68,11 +68,23 @@ class SuggestionsController < ApplicationController
     render json: {message: "Complete"}
   end
 
+  def vote
+    @suggestion = Suggestion.find(params[:suggestion_id])
+    vote = params[:vote]
+    if vote=="true"
+      vote = true
+    else
+      vote = false 
+    end
+    Vote.create(agree: vote, suggestion: @suggestion, user_id: current_user.id)
+    redirect_to votes_root
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_suggestion
-    @suggestion = suggestion.find(params[:id])
+    @suggestion = Suggestion.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

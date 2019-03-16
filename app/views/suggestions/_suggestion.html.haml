@@ -1,0 +1,16 @@
+.card.border-info.m-1{style: "width: 40rem;"}
+  .card-header
+    = suggestion.title
+  .card-body
+    %p 
+      = suggestion.created_at.to_time.strftime('%R %d/%m/%Y')
+    %a.btn.btn-primary{href: "#{suggestion_path(suggestion)}"}
+      Что-то
+  .card-footer.text-muted
+    %p
+      Создатель предложения
+      = link_to suggestion.user.email, user_path(suggestion.user), class: 'btn btn-outline-info'
+    %br
+      - if suggestion.can_vote(current_user)
+        %button.btn.btn-primary{onclick: "vote_suggestion(#{suggestion.id}, true)" ,type: "button", 'data-suggestion_id': "#{suggestion.id}"} Топ
+        %button.btn.btn-primary{onclick: "vote_suggestion(#{suggestion.id}, false)" ,type: "button", 'data-suggestion_id': "#{suggestion.id}"} Феее
