@@ -5,8 +5,22 @@
     %tr
       %th{:colspan => "1"}
   %tbody
-    - @suggestions.each do |suggestion|
+    - @provinces.each do |suggestion|
       %tr
-        %td= link_to 'Show', home
+        %td= suggestion.name
 %br/
 = link_to 'New Home', new_suggestion_path
+.row
+  .col-sm-4.first
+    %ul{:class => 'nav flex-column'}
+      -@provinces.each do |province|
+        %li{:class => 'w-100 mt-2'}
+          .dropdown.w-100
+            %button{ :class => 'btn btn-secondary dropdown-toggle w-100',  :id => 'dropdownMenu1', :data-toggle => 'dropdown',
+            :aria-haspopup => 'true', :aria-expanded =>'false'}= province.name
+            %ul{:class => 'dropdown-menu multi-level w-100 p-3', :role => 'menu',
+             :aria-labelledby => 'dropdownMenu'}
+              %li{:class => 'dropdown-submenu'}
+                %a{:class => 'dropdown-item', :tabindex => '-1', :href => '#'} Слуцк
+
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_15_170839) do
+ActiveRecord::Schema.define(version: 2019_03_15_172524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2019_03_15_170839) do
     t.string "post_index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "province_id"
+    t.index ["province_id"], name: "index_cities_on_province_id"
   end
 
   create_table "hearings", force: :cascade do |t|

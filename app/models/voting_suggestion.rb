@@ -1,0 +1,2 @@
+class VotingSuggestion < Suggestion
+end
