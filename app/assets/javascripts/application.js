@@ -13,10 +13,12 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require ckeditor/init
+//= require jquery-star-rating
 //= require_tree .
 
 $.ajaxSetup({
@@ -24,3 +26,4 @@ $.ajaxSetup({
     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
   }
 });
+$('.rating').rating();

@@ -4,7 +4,6 @@ class SuggestionsController < ApplicationController
   before_action :set_suggestion, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[show index]
 
-
   # GET /suggestions
   # GET /suggestions.json
   def index
@@ -13,7 +12,12 @@ class SuggestionsController < ApplicationController
 
   # GET /suggestions/1
   # GET /suggestions/1.json
-  def show; end
+  def show
+    @average = @suggestion.ratings&.average(:amount)
+    if @average.nil?
+      @average = 'Пока никто не оценил'
+    end
+  end
 
   # GET /suggestions/new
   def new
@@ -23,9 +27,7 @@ class SuggestionsController < ApplicationController
   # GET /suggestions/1/edit
   def edit
     unless current_user.id == @suggestion.user.id
-      unless current_user.role.role_type
-        redirect_to :root, danger: 'Нельзя'
-      end
+      redirect_to :root, danger: 'Нельзя' unless current_user.role.role_type
     end
   end
 
@@ -78,6 +80,25 @@ class SuggestionsController < ApplicationController
     end
     Vote.create(agree: vote, suggestion: @suggestion, user_id: current_user.id)
     redirect_to votes_root
+  end 
+  
+  def rate
+    rate_par = rate_params
+    @suggestion = Suggestion.where(id: rate_par[:active_suggestion_id]).last
+    if @suggestion.nil?
+      redirect_to :root, danger: 'Пост не найден :Q'
+    else
+      if Rating.where(active_suggestion_id: @suggestion.id, user_id: current_user.id).last.nil?
+        @rating = current_user.ratings.new(rate_par)
+        if @rating.save
+          (redirect_to @suggestion, success: 'Успешно оценено')
+        else
+          (redirect_to @suggestion, danger: 'Упс... Что-то пошло не так')
+        end
+      else
+        redirect_to active_suggestion_path(@suggestion), danger: 'Вы уже оценивали это предложение'
+      end
+    end
   end
 
   private
@@ -90,6 +111,10 @@ class SuggestionsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def suggestion
     Suggestion.where(type: params[:type])
+  end
+
+  def rate_params
+    params.permit(:amount, :active_suggestion_id)
   end
 
   def suggestion_params

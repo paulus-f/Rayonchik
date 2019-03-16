@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-lg-3">
+    <ul class="nav flex-column">
+      <% @provinces.each do |province| %>
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+          <%= province.name %>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-lg-9"></div>
+</div>
+

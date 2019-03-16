@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2019_03_16_171258) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "user_id"
+    t.bigint "active_suggestion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["active_suggestion_id"], name: "index_ratings_on_active_suggestion_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "regions", force: :cascade do |t|
     t.string "name"
     t.bigint "adminstration_id"

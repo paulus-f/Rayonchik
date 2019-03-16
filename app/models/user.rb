@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :votes
   belongs_to :administration
   has_many :suggstions
+  has_many :suggestions
+  has_many :ratings
   def admin?
     role.role_type == "admin" ? true : false
   end

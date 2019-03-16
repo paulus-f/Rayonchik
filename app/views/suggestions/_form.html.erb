@@ -21,7 +21,6 @@
         <%= f.cktext_area :description, :class => "form-control cleditor", ckeditor: { language: 'uk'} %>
       </div>
       <%= f.hidden_field :user_id, :value => current_user.id %>
-
     </div>
     <div class="actions d-flex justify-content-center">
       <%= f.submit "Submit", :class => "btn btn-primary" %>
