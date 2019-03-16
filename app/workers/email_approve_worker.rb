@@ -1,7 +1,7 @@
 class EmailApproveWorker
   include Sidekiq::Worker
 
-  def perform(user_params)
-    InviteMailer.invite(@student, @foundation, *info).deliver
+  def perform(email, password, first_name)
+    EmailApproveMailer.approve_invite(email, password, first_name).deliver
   end
 end
