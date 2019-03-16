@@ -1,0 +1,29 @@
+%h1 Предложение для администрации 
+%h2=@administartion.name
+%h1 Город 
+%h2=@city.name
+%table.table
+  %thead.thead
+    %tr
+      %th.col{colspan: "4"}
+      %td.row Название
+      %td.row Почта пользователя
+      %td.row Подтвердить
+      %td.row Отклонить
+  %tbody
+    - @suggestions.each do |suggestion|
+      %tr
+        %th.col{colspan: "4"}
+        %td.row= suggestion.title
+        %td.row= suggestion.user.email
+        %td.row
+          -if suggestion.reason.nil?
+            %button.btn.btn-primary{onclick: "approve_suggestion(#{suggestion.id})" ,type: "button", 'data-suggestion_id': "#{suggestion.id}"} Approve
+          -else
+            %p Причина отклонения:
+            =suggestion.reason
+        %td.row
+          -if suggestion.reason.nil?
+            %button.btn.btn-primary{onclick: "reject_suggestion(#{suggestion.id})" ,type: "button", 'data-suggestion_id': "#{suggestion.id}"} Reject
+%br/
+= link_to 'Home', root_path

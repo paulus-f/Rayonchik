@@ -57,6 +57,17 @@ class SuggestionsController < ApplicationController
     redirect_to :root, success: 'Предложение удаленно'
   end
 
+  def reject
+    @suggestion = Suggestion.find_by(id: params[:suggestion_id])
+    @suggestion.update_attribute(:reason, params[:reason])
+    render json: {message: "Complete"}
+  end
+
+  def approve
+    @suggestion = Suggestion.find_by(id: params[:suggestion_id])
+    render json: {message: "Complete"}
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
