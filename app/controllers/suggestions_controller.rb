@@ -12,7 +12,12 @@ class SuggestionsController < ApplicationController
 
   # GET /suggestions/1
   # GET /suggestions/1.json
-  def show; end
+  def show
+    @average = @suggestion.ratings&.average(:amount)
+    if @average.nil?
+      @average = 'Пока никто не оценил'
+    end
+  end
 
   # GET /suggestions/new
   def new

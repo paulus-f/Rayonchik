@@ -12,6 +12,7 @@
   <%= f.hidden_field :active_suggestion_id, :value => @suggestion.id %>
   <%= f.submit "Оценить", :class => "btn btn-primary" %>
 <% end %>
+<h2><%= @average %></h2>
 <%= link_to 'Edit', edit_active_suggestion_path(@suggestion) %> |
 <%= link_to 'Edit', edit_active_suggestion_path(@suggestion) %> |
 <%= link_to 'Back', suggestions_path %>
