@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :pending_suggestions, path: 'suggestions/pending', controller: 'suggestions', type: 'PendingSuggestion', except: %w[edit new]
   resources :voting_suggestions, path: 'suggestions/voting', controller: 'suggestions', type: 'VotingSuggestion', except: %w[edit new]
   post '/approve', to: 'invites#approve'
+  post '/rate', to: 'suggestions#rate'
   mount Sidekiq::Web => '/sidekiq'
   mount Ckeditor::Engine => '/ckeditor'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

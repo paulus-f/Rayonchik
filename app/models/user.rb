@@ -11,7 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   belongs_to :role
   has_many :suggestions
-  has_many :rate
+  has_many :ratings
   def admin?
     role.role_type == "admin" ? true : false
   end

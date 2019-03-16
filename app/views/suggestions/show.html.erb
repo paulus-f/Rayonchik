@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @suggestion.title %></h1>
 <p><%= @suggestion.description.html_safe %></p>
+
+<%= form_with(url: "/rate", method: "post") do |f|%>
+  <% i = 1 %>
+  <% while i < 11 do %>
+    <input type="radio" name="amount" value="<%= i %>" class="star" />
+    <% i+=1 %>
+  <% end %>
+
+  <%= f.hidden_field :active_suggestion_id, :value => @suggestion.id %>
+  <%= f.submit "Оценить", :class => "btn btn-primary" %>
+<% end %>
+<%= link_to 'Edit', edit_active_suggestion_path(@suggestion) %> |
 <%= link_to 'Edit', edit_active_suggestion_path(@suggestion) %> |
 <%= link_to 'Back', suggestions_path %>

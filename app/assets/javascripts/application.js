@@ -16,5 +16,7 @@
 //= require activestorage
 //= require turbolinks
 //= require ckeditor/init
+//= require jquery-star-rating
 //= require_tree .
 
+$('.rating').rating();

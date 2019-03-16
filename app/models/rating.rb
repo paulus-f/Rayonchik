@@ -1,3 +1,4 @@
 class Rating < ApplicationRecord
-  has_many :rates
+  belongs_to :user
+  belongs_to :active_suggestion
 end
