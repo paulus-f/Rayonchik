@@ -26,4 +26,4 @@ $.ajaxSetup({
     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
   }
 });
-$('.rating').rating();
+$('.star').rating();
