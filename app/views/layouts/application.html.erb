@@ -20,7 +20,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <% if current_user.admin? %>
+        <% if current_user&.admin? %>
           <li class="nav-item active">
             <%= link_to 'Администрация', current_user.administration, class: "nav-link" %>
           </li>
@@ -31,7 +31,14 @@
             <%= link_to 'Голосование', votes_path, class: "nav-link" %>
           </li>
         <% end %>
-        </li>
+        <% if current_user.nil? %>
+          <li class="nav-item">
+            <a class="badge badge-info mr-sm-2" href="<%=new_user_registration_path%>"> Подать заявку <span class="sr-only btn">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="badge badge-info mr-sm-5" href="<%=new_user_session_path%>"> Войти <span class="sr-only btn">(current)</span></a>
+          </li>
+        <% end %>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
