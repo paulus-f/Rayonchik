@@ -4,7 +4,7 @@ class User < ApplicationRecord
   scope :admin, -> { where(role_type: 'admin') }
 
   scope :moderator, -> { where(role: 'moderator') }
-  scope :administration, -> { where(role: 'administration') }
+  #scope :administration, -> { where(role: 'administration') }
   # Include default devise modules. Others available are:
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
