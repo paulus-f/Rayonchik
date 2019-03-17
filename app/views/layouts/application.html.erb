@@ -9,18 +9,37 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
-
   <body>
-    <nav class="nav">
-      <div class="collapse navbar-collapse" id="navbarNav">
+  <nav class="mt-1">
+    <h1> Место для рекламы </h1>
+  </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
         <% if current_user.admin? %>
-          <%= link_to 'Администрация', current_user.administration, class: "nav-link" %>
-          <%= link_to 'Список пользователей', current_user, class: "nav-link" %>
-          <%= link_to 'Голосование', votes_path, class: "nav-link" %>
+          <li class="nav-item active">
+            <%= link_to 'Администрация', current_user.administration, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Список пользователей', current_user, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Голосование', votes_path, class: "nav-link" %>
+          </li>
         <% end %>
-      </div>
-    </nav>
-    <div class="container">
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  <div class="container">
       <% flash.each do |name, message| %>
         <div class="alert <%= bootstrap_class_for(name) %>">
           <button class="close" data-dismiss="alert">&times;</button>
