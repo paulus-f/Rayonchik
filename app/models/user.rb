@@ -11,7 +11,7 @@ class User < ApplicationRecord
   belongs_to :role
   belongs_to :region
   has_and_belongs_to_many :votes
-  belongs_to :administration
+  has_one :administration
   has_many :suggstions
   has_many :suggestions
   has_many :ratings
