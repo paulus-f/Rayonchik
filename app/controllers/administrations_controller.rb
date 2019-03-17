@@ -3,7 +3,7 @@ class AdministrationsController < ApplicationController
     @administartion = Administration.find_by(id: params[:id])
     @city = @administartion.city
     if current_user.admin?
-      @suggestions = Suggestion.all
+      @suggestions = PendingSuggestion.all
     end
   end
 end

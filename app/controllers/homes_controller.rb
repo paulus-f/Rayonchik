@@ -5,6 +5,7 @@ class HomesController < ApplicationController
   # GET /homes.json
   def index
     @provinces = Province.all
+    @suggestions = ActiveSuggestion.all
   end
 
   def cities

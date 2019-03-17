@@ -2,27 +2,27 @@
 %h2=@administartion.name
 %h1 Город 
 %h2=@city.name
+
 %table.table
   %thead.thead
-    %tr
-      %th.col{colspan: "4"}
-      %td.row Название
-      %td.row Почта пользователя
-      %td.row Подтвердить
-      %td.row Отклонить
+    %td
+      %tr.col{colspan: "4"}
+      %th Название
+      %th Почта пользователя
+      %th Подтвердить
+      %th Отклонить
   %tbody
     - @suggestions.each do |suggestion|
-      %tr
-        %th.col{colspan: "4"}
-        %td.row= suggestion.title
-        %td.row= suggestion.user.email
-        %td.row
+      %tr.col{colspan: '4'}
+        %td= suggestion.title
+        %td= suggestion.user.email
+        %td
           -if suggestion.reason.nil?
             %button.btn.btn-primary{onclick: "approve_suggestion(#{suggestion.id})" ,type: "button", 'data-suggestion_id': "#{suggestion.id}"} Approve
           -else
             %p Причина отклонения:
             =suggestion.reason
-        %td.row
+        %td
           -if suggestion.reason.nil?
             %button.btn.btn-primary{onclick: "reject_suggestion(#{suggestion.id})" ,type: "button", 'data-suggestion_id': "#{suggestion.id}"} Reject
 %br/
