@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+    MinskR = Region.create(name: 'Минская')
+    VitebskR = Region.create(name: 'Витебская')
+    GomelR = Region.create(name: 'Гомельская')
+    MogilevR = Region.create(name: 'Могилевская')
+    BrestR = Region.create(name: 'Брестская')
+    GrodnoR = Region.create(name: 'Гродненская')
+    R = Region.create(name: 'Гомельская')
