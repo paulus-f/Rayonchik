@@ -1,5 +1,5 @@
 reject_suggestion = (id) => {
-  var reason = prompt('Напишите причину', "Чиновник лох");
+  var reason = prompt('Напишите причину', "Есть причина");
   $.ajax({
     url: '/suggestions/' + id + '/reject',
     type: 'POST',
