@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post '/approve', to: 'suggestions#approve'
     post '/vote', to: 'suggestions#vote'
   end
+  get '/adv', to: 'pages#adv'
   resources :votes
   resources :suggestions, path: 'suggestions/all', only: %w[index show]
   resources :administrations
