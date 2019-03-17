@@ -93,14 +93,16 @@ ActiveRecord::Schema.define(version: 2019_03_17_100723) do
   end
 
   create_table "suggestions", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "image"
+    t.bigint "user_id"
+    t.bigint "region_id"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reason"
-    t.string "title"
-    t.text "description"
-    t.bigint "user_id"
     t.boolean "approve"
-    t.bigint "region_id"
     t.index ["region_id"], name: "index_suggestions_on_region_id"
     t.index ["user_id"], name: "index_suggestions_on_user_id"
   end
