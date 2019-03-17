@@ -67,6 +67,7 @@ class SuggestionsController < ApplicationController
 
   def approve
     @suggestion = Suggestion.find_by(id: params[:suggestion_id])
+    @suggestion.update_attribute(:approve, true)
     render json: {message: "Complete"}
   end
 
