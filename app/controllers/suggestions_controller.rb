@@ -118,6 +118,6 @@ class SuggestionsController < ApplicationController
   end
 
   def suggestion_params
-    params.require(:suggestion).permit(:title, :image, :user_id, :region_id, :description)
+    params.require(:active_suggestion).permit(:title, :image, :user_id, :region_id, :description)
   end
 end

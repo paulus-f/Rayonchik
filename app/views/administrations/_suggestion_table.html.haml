@@ -1,9 +1,10 @@
-%h1 Предложение для администрации 
-%h2=@administartion.name
-%h1 Город 
-%h2=@city.name
+%h4
+  %span Предложения для администрации "
+  %strong=@administartion.name
+  %span " город
+  %span=@city.name
 
-%table.table
+%table.table{ :class => 'mb-5'}
   %thead.thead
     %td
       %tr.col{colspan: "4"}
@@ -25,5 +26,3 @@
         %td
           -if suggestion.reason.nil?
             %button.btn.btn-primary{onclick: "reject_suggestion(#{suggestion.id})" ,type: "button", 'data-suggestion_id': "#{suggestion.id}"} Reject
-%br/
-= link_to 'Home', root_path

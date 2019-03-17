@@ -27,3 +27,5 @@
 /config/master.key
 /config/secrets.yml
 \.idea/
+
+public/adv2\.xcf

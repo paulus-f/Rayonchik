@@ -1,14 +1,18 @@
 %p#notice= notice
-%h1 Invites
+%h1 Приглашения
 %table.table
-  %thead.thead-dark
+  %thead
     %tr
-      %th.col{:colspan => "3"}
+      %td
+      %tr.col{colspan: "3"}
+      %th E-mail
+      %th Подтвердить
+      %th Отклонить
   %tbody
     - @invites.each do |invite|
       %tr
-        %td.row= invite.email
+        %td= invite.email
         %td= link_to "Approve ", approve_path({id: invite.id}), remote: true, method: :post
         %td= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
-= link_to 'Home', root_path
+

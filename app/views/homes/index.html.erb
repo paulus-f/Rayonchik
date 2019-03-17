@@ -21,7 +21,7 @@
               <a class="text-dark" href="#"><%= link_to suggestion.title, suggestion %></a>
             </h3>
             <div class="mb-1 text-muted"><%= suggestion.created_at.strftime("Созданно %m/%d/%Y") %></div>
-            <p class="card-text mb-auto"><%= strip_tags(suggestion.description) %></p>
+            <p class="card-text mb-auto"><%= truncate(strip_tags(suggestion.description), :length => 100) %></p>
             <%= link_to 'Читать продолжение', suggestion %>
           </div>
           <img class="card-img-right flex-auto d-none d-md-block" data-src="" alt="<%= suggestion.title %>" style="width: 200px; height: 250px;" src="<%= suggestion.image %>" data-holder-rendered="true">
