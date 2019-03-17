@@ -17,13 +17,17 @@
         %td= suggestion.title
         %td= suggestion.user.email
         %td
-          -if suggestion.reason.nil?
+          -if suggestion.reason.nil? and !suggestion.approve
             %button.btn.btn-primary{onclick: "approve_suggestion(#{suggestion.id})" ,type: "button", 'data-suggestion_id': "#{suggestion.id}"} Approve
+          -elsif suggestion.approve
+            Подтверждено
           -else
             %p Причина отклонения:
             =suggestion.reason
         %td
-          -if suggestion.reason.nil?
+          -if suggestion.approve
+            %p -
+          -else
             %button.btn.btn-primary{onclick: "reject_suggestion(#{suggestion.id})" ,type: "button", 'data-suggestion_id': "#{suggestion.id}"} Reject
 %br/
 = link_to 'Home', root_path

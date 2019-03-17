@@ -6,6 +6,6 @@ class Suggestion < ApplicationRecord
   belongs_to :region
   scope :approving, -> { where(approve: true) }
   def can_vote(current_user)
-    votes.where(user_id: current_user.id).nil? == [] ? true : false
+    votes.where(user_id: current_user.id) == [] ? true : false
   end
 end
